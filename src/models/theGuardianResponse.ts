@@ -1,4 +1,5 @@
 export interface TheGuardianHttpResponse {
+  status: number;
   response: TheGuardianResponse;
 }
 
