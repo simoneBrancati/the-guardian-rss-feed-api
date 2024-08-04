@@ -14,7 +14,7 @@ import { convertDateFromIsoToRFC } from "../utils/dates";
 //   return port_getDataFromTheGuardian(section);
 // };
 
-export const createRssJson = (
+export const generateRssJson = (
   section: TheGuardianSection,
   sectionResults: TheGuardianSectionResult[],
 ): CustomRssJson => {
@@ -27,13 +27,13 @@ export const createRssJson = (
         link: section.webUrl,
         description: "The Guardian UK RSS Feed",
         language: "en-gb",
-        item: sectionResults.map((result) => createRssJsonItem(result)),
+        item: sectionResults.map((result) => generateRssJsonItem(result)),
       },
     },
   };
 };
 
-export const createRssJsonItem = (
+export const generateRssJsonItem = (
   sectionResult: TheGuardianSectionResult,
 ): CustomRssJsonItem => {
   return {

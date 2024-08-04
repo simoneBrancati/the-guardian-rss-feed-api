@@ -1,12 +1,12 @@
 import { TheGuardianHttpResponse } from "../src/models/theGuardianResponse";
 import {
-  createRssJsonItem,
-  createRssJson,
-} from "../src/services/theGuardianService";
+  generateRssJsonItem,
+  generateRssJson,
+} from "../src/services/rssGeneration.service";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-describe("createRssJsonItem", () => {
+describe("generateRssJsonItem", () => {
   it("should create an RSS Json Item from a section result", () => {
     const mockDataPath = join(
       __dirname,
@@ -16,7 +16,7 @@ describe("createRssJsonItem", () => {
     const mockData = readFileSync(mockDataPath, "utf8");
     const mockResponse: TheGuardianHttpResponse = JSON.parse(mockData);
 
-    const result = createRssJsonItem(mockResponse.response.results[1]);
+    const result = generateRssJsonItem(mockResponse.response.results[1]);
 
     const expected = {
       title:
@@ -30,7 +30,7 @@ describe("createRssJsonItem", () => {
   });
 });
 
-describe("createRssJson", () => {
+describe("generateRssJson", () => {
   it("should create an RSS Json Item from a section result", () => {
     const mockDataPath = join(
       __dirname,
@@ -40,7 +40,7 @@ describe("createRssJson", () => {
     const mockData = readFileSync(mockDataPath, "utf8");
     const mockResponse: TheGuardianHttpResponse = JSON.parse(mockData);
 
-    const result = createRssJson(
+    const result = generateRssJson(
       mockResponse.response.section,
       mockResponse.response.results,
     );
