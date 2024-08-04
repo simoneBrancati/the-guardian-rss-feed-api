@@ -1,0 +1,60 @@
+// import { getDataFromTheGuardian as port_getDataFromTheGuardian } from "../ports/httpOut";
+import {
+  // TheGuardianResponse,
+  TheGuardianSection,
+  TheGuardianSectionResult,
+} from "../models/theGuardianResponse";
+import { RssJson, RssJsonItem } from "../models/rssJson";
+
+// export const getDataFromTheGuardian = async (
+//   section: string,
+// ): Promise<TheGuardianResponse> => {
+//   return port_getDataFromTheGuardian(section);
+// };
+
+export const createRssJson = (
+  section: TheGuardianSection,
+  sectionResults: TheGuardianSectionResult[],
+): RssJson => {
+  return {
+    rss: {
+      channel: {
+        title: section.webTitle,
+        link: section.webUrl,
+        description: "The Guardian UK RSS Feed",
+        language: "en-gb",
+        item: sectionResults.map((result) => createRssJsonItem(result)),
+      },
+    },
+  };
+};
+
+export const createRssJsonItem = (
+  sectionResult: TheGuardianSectionResult,
+): RssJsonItem => {
+  return {
+    title: sectionResult.webTitle,
+    link: sectionResult.webUrl,
+    language: "en-gb",
+    pubDate: convertDateFromIsoToRFC(sectionResult.webPublicationDate),
+    guid: sectionResult.id,
+    "kotuko:wordleScore": createWordleScore(sectionResult.webTitle),
+  };
+};
+
+export const convertDateFromIsoToRFC = (isoDate: string): string => {
+  return new Date(isoDate).toUTCString();
+};
+
+export const createWordleScore = (str: string, desiredLength = 5): number => {
+  const wordRegex = /\w+/g;
+  const wordsArray = str.match(wordRegex) || [];
+
+  return wordsArray.reduce((count: number, word: string) => {
+    if (word.length === desiredLength) {
+      count += 1;
+    }
+
+    return count;
+  }, 0);
+};
