@@ -2,6 +2,7 @@ import { TheGuardianHttpResponse } from "../src/models/theGuardianResponse";
 import {
   generateRssJsonItem,
   generateRssJson,
+  generateRss,
 } from "../src/services/rssGeneration.service";
 import { readFileSync } from "fs";
 import { join } from "path";
@@ -83,5 +84,26 @@ describe("generateRssJson", () => {
       },
     };
     expect(result).toStrictEqual(expected);
+  });
+});
+
+describe("generateRss", () => {
+  it("should create a valid RSS Xml string", () => {
+    const mockDataPath = join(
+      __dirname,
+      "mocks",
+      "theGuardianResponse.mock.json",
+    );
+    const mockData = readFileSync(mockDataPath, "utf8");
+    const mockResponse: TheGuardianHttpResponse = JSON.parse(mockData);
+
+    const result = generateRss(
+      mockResponse.response.section,
+      mockResponse.response.results,
+    );
+
+    expect(result).toBe(
+      '<rss version="2.0" xmlns:kotuko="https://kotuko.it/"><channel><title>Life and style</title><link>https://www.theguardian.com/lifeandstyle</link><description>The Guardian UK RSS Feed</description><language>en-gb</language><item><title>Who invented mathematics?</title><link>https://www.theguardian.com/lifeandstyle/article/2024/aug/04/who-invented-mathematics</link><pubDate>Sun, 04 Aug 2024 13:01:31 GMT</pubDate><guid>https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/who-invented-mathematics</guid><kotuko:wordleScore>0</kotuko:wordleScore></item><item><title>The dead hang delight: how this quick, surprisingly simple exercise can change your life</title><link>https://www.theguardian.com/lifeandstyle/article/2024/aug/04/the-dead-hang-delight-how-this-quick-surprisingly-simple-exercise-can-change-your-life</link><pubDate>Sun, 04 Aug 2024 13:00:32 GMT</pubDate><guid>https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/the-dead-hang-delight-how-this-quick-surprisingly-simple-exercise-can-change-your-life</guid><kotuko:wordleScore>1</kotuko:wordleScore></item><item><title>Almost all nursery rhymes are utter doggerel and I loathe them, sadly my daughter doesn’t | Seamas O&apos;Reilly</title><link>https://www.theguardian.com/lifeandstyle/article/2024/aug/04/almost-all-nursery-rhymes-are-utter-doggerel-and-i-loathe-them-sadly-my-daughter-doesnt</link><pubDate>Sun, 04 Aug 2024 08:30:25 GMT</pubDate><guid>https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/almost-all-nursery-rhymes-are-utter-doggerel-and-i-loathe-them-sadly-my-daughter-doesnt</guid><kotuko:wordleScore>3</kotuko:wordleScore></item></channel></rss>',
+    );
   });
 });

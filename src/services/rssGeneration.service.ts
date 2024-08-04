@@ -1,18 +1,19 @@
-// import { getDataFromTheGuardian as port_getDataFromTheGuardian } from "../ports/httpOut";
 import {
-  // TheGuardianResponse,
   TheGuardianSection,
   TheGuardianSectionResult,
 } from "../models/theGuardianResponse";
 import { CustomRssJson, CustomRssJsonItem } from "../models/customRssJson";
 import { createWordleScore } from "../utils/wordleScore";
 import { convertDateFromIsoToRFC } from "../utils/dates";
+import { convertJsToXml } from "../utils/xml";
 
-// export const getDataFromTheGuardian = async (
-//   section: string,
-// ): Promise<TheGuardianResponse> => {
-//   return port_getDataFromTheGuardian(section);
-// };
+export const generateRss = (
+  section: TheGuardianSection,
+  sectionResults: TheGuardianSectionResult[],
+): string => {
+  const rssJson = generateRssJson(section, sectionResults);
+  return convertJsToXml<CustomRssJson>(rssJson);
+};
 
 export const generateRssJson = (
   section: TheGuardianSection,
@@ -20,8 +21,8 @@ export const generateRssJson = (
 ): CustomRssJson => {
   return {
     rss: {
-      "@_xmlns:kotuko": "https://kotuko.it/",
       "@_version": "2.0",
+      "@_xmlns:kotuko": "https://kotuko.it/",
       channel: {
         title: section.webTitle,
         link: section.webUrl,
