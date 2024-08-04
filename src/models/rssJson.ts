@@ -1,10 +1,10 @@
-export interface RssJson {
-  rss: {
-    channel: RssJsonChannel;
-  };
+export interface RssObject {
+  // @_ is the attribute name prefix used to convert the key to an xml attribute for the upper level xml tag
+  "@_version": string;
+  channel: RssJsonChannel;
 }
 
-interface RssJsonChannel {
+export interface RssJsonChannel {
   title: string;
   link: string;
   description: string;
@@ -21,8 +21,6 @@ export interface RssJsonItem {
   title?: string;
   link?: string;
   description?: string;
-  language?: string;
   pubDate?: string;
   guid?: string;
-  "kotuko:wordleScore"?: number;
 }

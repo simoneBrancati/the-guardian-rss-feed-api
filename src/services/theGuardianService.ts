@@ -4,7 +4,7 @@ import {
   TheGuardianSection,
   TheGuardianSectionResult,
 } from "../models/theGuardianResponse";
-import { RssJson, RssJsonItem } from "../models/rssJson";
+import { CustomRssJson, CustomRssJsonItem } from "../models/customRssJson";
 import { createWordleScore } from "../utils/wordleScore";
 import { convertDateFromIsoToRFC } from "../utils/dates";
 
@@ -17,9 +17,11 @@ import { convertDateFromIsoToRFC } from "../utils/dates";
 export const createRssJson = (
   section: TheGuardianSection,
   sectionResults: TheGuardianSectionResult[],
-): RssJson => {
+): CustomRssJson => {
   return {
     rss: {
+      "@_xmlns:kotuko": "https://kotuko.it/",
+      "@_version": "2.0",
       channel: {
         title: section.webTitle,
         link: section.webUrl,
@@ -33,13 +35,12 @@ export const createRssJson = (
 
 export const createRssJsonItem = (
   sectionResult: TheGuardianSectionResult,
-): RssJsonItem => {
+): CustomRssJsonItem => {
   return {
     title: sectionResult.webTitle,
     link: sectionResult.webUrl,
-    language: "en-gb",
     pubDate: convertDateFromIsoToRFC(sectionResult.webPublicationDate),
-    guid: sectionResult.id,
+    guid: sectionResult.apiUrl,
     "kotuko:wordleScore": createWordleScore(sectionResult.webTitle),
   };
 };
