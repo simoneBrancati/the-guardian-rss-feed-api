@@ -5,6 +5,8 @@ import {
   TheGuardianSectionResult,
 } from "../models/theGuardianResponse";
 import { RssJson, RssJsonItem } from "../models/rssJson";
+import { createWordleScore } from "../utils/wordleScore";
+import { convertDateFromIsoToRFC } from "../utils/dates";
 
 // export const getDataFromTheGuardian = async (
 //   section: string,
@@ -40,21 +42,4 @@ export const createRssJsonItem = (
     guid: sectionResult.id,
     "kotuko:wordleScore": createWordleScore(sectionResult.webTitle),
   };
-};
-
-export const convertDateFromIsoToRFC = (isoDate: string): string => {
-  return new Date(isoDate).toUTCString();
-};
-
-export const createWordleScore = (str: string, desiredLength = 5): number => {
-  const wordRegex = /\w+/g;
-  const wordsArray = str.match(wordRegex) || [];
-
-  return wordsArray.reduce((count: number, word: string) => {
-    if (word.length === desiredLength) {
-      count += 1;
-    }
-
-    return count;
-  }, 0);
 };
