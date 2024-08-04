@@ -1,0 +1,95 @@
+{
+    "response": {
+        "status": "ok",
+        "userTier": "developer",
+        "total": 79015,
+        "startIndex": 1,
+        "pageSize": 10,
+        "currentPage": 1,
+        "pages": 7902,
+        "edition": {
+            "id": "lifeandstyle",
+            "webTitle": "Life and style",
+            "webUrl": "https://www.theguardian.com/lifeandstyle",
+            "apiUrl": "https://content.guardianapis.com/lifeandstyle",
+            "code": "default"
+        },
+        "section": {
+            "id": "lifeandstyle",
+            "webTitle": "Life and style",
+            "webUrl": "https://www.theguardian.com/lifeandstyle",
+            "apiUrl": "https://content.guardianapis.com/lifeandstyle",
+            "editions": [
+                {
+                    "id": "lifeandstyle",
+                    "webTitle": "Life and style",
+                    "webUrl": "https://www.theguardian.com/lifeandstyle",
+                    "apiUrl": "https://content.guardianapis.com/lifeandstyle",
+                    "code": "default"
+                },
+                {
+                    "id": "au/lifeandstyle",
+                    "webTitle": "Life and style",
+                    "webUrl": "https://www.theguardian.com/au/lifeandstyle",
+                    "apiUrl": "https://content.guardianapis.com/au/lifeandstyle",
+                    "code": "au"
+                },
+                {
+                    "id": "uk/lifeandstyle",
+                    "webTitle": "Life and style",
+                    "webUrl": "https://www.theguardian.com/uk/lifeandstyle",
+                    "apiUrl": "https://content.guardianapis.com/uk/lifeandstyle",
+                    "code": "uk"
+                },
+                {
+                    "id": "us/lifeandstyle",
+                    "webTitle": "Life and style",
+                    "webUrl": "https://www.theguardian.com/us/lifeandstyle",
+                    "apiUrl": "https://content.guardianapis.com/us/lifeandstyle",
+                    "code": "us"
+                }
+            ]
+        },
+        "results": [
+            {
+                "id": "lifeandstyle/article/2024/aug/04/who-invented-mathematics",
+                "type": "article",
+                "sectionId": "lifeandstyle",
+                "sectionName": "Life and style",
+                "webPublicationDate": "2024-08-04T13:01:31Z",
+                "webTitle": "Who invented mathematics?",
+                "webUrl": "https://www.theguardian.com/lifeandstyle/article/2024/aug/04/who-invented-mathematics",
+                "apiUrl": "https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/who-invented-mathematics",
+                "isHosted": false,
+                "pillarId": "pillar/lifestyle",
+                "pillarName": "Lifestyle"
+            },
+            {
+                "id": "lifeandstyle/article/2024/aug/04/the-dead-hang-delight-how-this-quick-surprisingly-simple-exercise-can-change-your-life",
+                "type": "article",
+                "sectionId": "lifeandstyle",
+                "sectionName": "Life and style",
+                "webPublicationDate": "2024-08-04T13:00:32Z",
+                "webTitle": "The dead hang delight: how this quick, surprisingly simple exercise can change your life",
+                "webUrl": "https://www.theguardian.com/lifeandstyle/article/2024/aug/04/the-dead-hang-delight-how-this-quick-surprisingly-simple-exercise-can-change-your-life",
+                "apiUrl": "https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/the-dead-hang-delight-how-this-quick-surprisingly-simple-exercise-can-change-your-life",
+                "isHosted": false,
+                "pillarId": "pillar/lifestyle",
+                "pillarName": "Lifestyle"
+            },
+            {
+                "id": "lifeandstyle/article/2024/aug/04/almost-all-nursery-rhymes-are-utter-doggerel-and-i-loathe-them-sadly-my-daughter-doesnt",
+                "type": "article",
+                "sectionId": "lifeandstyle",
+                "sectionName": "Life and style",
+                "webPublicationDate": "2024-08-04T08:30:25Z",
+                "webTitle": "Almost all nursery rhymes are utter doggerel and I loathe them, sadly my daughter doesn’t | Seamas O'Reilly",
+                "webUrl": "https://www.theguardian.com/lifeandstyle/article/2024/aug/04/almost-all-nursery-rhymes-are-utter-doggerel-and-i-loathe-them-sadly-my-daughter-doesnt",
+                "apiUrl": "https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/almost-all-nursery-rhymes-are-utter-doggerel-and-i-loathe-them-sadly-my-daughter-doesnt",
+                "isHosted": false,
+                "pillarId": "pillar/lifestyle",
+                "pillarName": "Lifestyle"
+            }
+        ]
+    }
+}
