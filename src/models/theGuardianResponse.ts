@@ -1,5 +1,9 @@
-export interface TheGuardianHttpResponse {
+export interface TheGuardianApiResponse {
   status: number;
+  data: TheGuardianResponse;
+}
+
+export interface TheGuardianHttpResponse {
   response: TheGuardianResponse;
 }
 
