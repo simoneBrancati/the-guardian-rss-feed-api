@@ -1,16 +1,14 @@
 import {
   TheGuardianHttpResponse,
-  TheGuardianApiResponse,
+  TheGuardianResponse,
 } from "../models/theGuardianResponse";
 import { makeHttpGetRequest } from "../ports/http";
 
 export const getSectionFromTheGuardian = async (
   sectionKey: string,
-): Promise<TheGuardianApiResponse> => {
+): Promise<TheGuardianResponse> => {
   const response =
     await makeHttpGetRequest<TheGuardianHttpResponse>(sectionKey);
-  return {
-    status: response.status,
-    data: response.data.response,
-  };
+
+  return response.data.response;
 };
