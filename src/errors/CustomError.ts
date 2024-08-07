@@ -1,10 +1,14 @@
+import { IError } from "./ErrorInterface";
+
 abstract class CustomError extends Error {
   abstract errorCode: number;
   abstract erroType: string;
-  abstract metadata?: Record<string, unknown>;
+  error?: IError;
 
-  constructor(message: string) {
+  constructor(message: string, error?: IError) {
     super(message);
+
+    this.error = error;
 
     Object.setPrototypeOf(this, CustomError.prototype);
   }

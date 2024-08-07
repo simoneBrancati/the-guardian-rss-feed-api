@@ -1,13 +1,12 @@
 import CustomError from "./CustomError";
+import { IError } from "./ErrorInterface";
 
 export default class NotFoundError extends CustomError {
   errorCode = 404;
   erroType = "NOT_FOUND_ERROR";
-  metadata;
 
-  constructor(message: string, metadata?: Record<string, unknown>) {
-    super(message);
-    this.metadata = metadata;
+  constructor(message: string, error?: IError) {
+    super(message, error);
 
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
@@ -15,7 +14,6 @@ export default class NotFoundError extends CustomError {
   public serializeError() {
     return {
       message: this.message,
-      metadata: this.metadata,
     };
   }
 }
