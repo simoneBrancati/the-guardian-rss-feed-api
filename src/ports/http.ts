@@ -24,13 +24,29 @@ export const makeHttpGetRequest = async <DataType>(
     if (err instanceof AxiosError) {
       return {
         status: err.response?.status || 500,
-        error: err.message,
+        error: {
+          message: err.message,
+          stack: err.stack,
+        },
+      };
+    }
+
+    if (err instanceof Error) {
+      return {
+        status: 500,
+        error: {
+          message: err.message,
+          stack: err.stack,
+        },
       };
     }
 
     return {
       status: 500,
-      error: "Internal Server Error",
+      error: {
+        message: "Internal Server Error",
+        stack: "HTTP PORT - GET REQUEST: Unknown Error",
+      },
     };
   }
 };
