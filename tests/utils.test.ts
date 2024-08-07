@@ -1,4 +1,5 @@
 import { convertDateFromIsoToRFC } from "../src/utils/dates";
+import { isKebabCase, isNonEmptyString, isString } from "../src/utils/checks";
 import { createWordleScore } from "../src/utils/wordleScore";
 import { convertJsToXml } from "../src/utils/xml";
 
@@ -88,5 +89,107 @@ describe("convertJsToXml", () => {
     expect(result).toBe(
       '<rss version="2.0" xmlns:kotuko="https://kotuko.it/"><channel><title>Life and style</title><link>https://www.theguardian.com/lifeandstyle</link><description>The Guardian UK RSS Feed</description><language>en-gb</language><item><title>Who invented mathematics?</title><link>https://www.theguardian.com/lifeandstyle/article/2024/aug/04/who-invented-mathematics</link><pubDate>Sun, 04 Aug 2024 13:01:31 GMT</pubDate><guid>https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/who-invented-mathematics</guid><kotuko:wordleScore>0</kotuko:wordleScore></item><item><title>The dead hang delight: how this quick, surprisingly simple exercise can change your life</title><link>https://www.theguardian.com/lifeandstyle/article/2024/aug/04/the-dead-hang-delight-how-this-quick-surprisingly-simple-exercise-can-change-your-life</link><pubDate>Sun, 04 Aug 2024 13:00:32 GMT</pubDate><guid>https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/the-dead-hang-delight-how-this-quick-surprisingly-simple-exercise-can-change-your-life</guid><kotuko:wordleScore>1</kotuko:wordleScore></item><item><title>Almost all nursery rhymes are utter doggerel and I loathe them, sadly my daughter doesn’t | Seamas O&apos;Reilly</title><link>https://www.theguardian.com/lifeandstyle/article/2024/aug/04/almost-all-nursery-rhymes-are-utter-doggerel-and-i-loathe-them-sadly-my-daughter-doesnt</link><pubDate>Sun, 04 Aug 2024 08:30:25 GMT</pubDate><guid>https://content.guardianapis.com/lifeandstyle/article/2024/aug/04/almost-all-nursery-rhymes-are-utter-doggerel-and-i-loathe-them-sadly-my-daughter-doesnt</guid><kotuko:wordleScore>3</kotuko:wordleScore></item></channel></rss>',
     );
+  });
+});
+
+describe("isString", () => {
+  it("should return false on undefined", () => {
+    const str = undefined;
+    const result = isString(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on number", () => {
+    const str = 1;
+    const result = isString(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return true on empty string", () => {
+    const str = "";
+    const result = isString(str);
+    expect(result).toBe(true);
+  });
+
+  it("should return true", () => {
+    const str = "this is a string";
+    const result = isString(str);
+    expect(result).toBe(true);
+  });
+});
+
+describe("isNonEmptyString", () => {
+  it("should return false on undefined", () => {
+    const str = undefined;
+    const result = isNonEmptyString(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on number", () => {
+    const str = 1;
+    const result = isNonEmptyString(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on empty string", () => {
+    const str = "";
+    const result = isNonEmptyString(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return true", () => {
+    const str = "this is a string";
+    const result = isNonEmptyString(str);
+    expect(result).toBe(true);
+  });
+});
+
+describe("isKebabCase", () => {
+  it("should return false on empty string", () => {
+    const str = "";
+    const result = isKebabCase(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on string starting with -", () => {
+    const str = "-not-kebab";
+    const result = isKebabCase(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on string ending with -", () => {
+    const str = "not-kebab-";
+    const result = isKebabCase(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on string starting and ending with -", () => {
+    const str = "-bad-kebab-";
+    const result = isKebabCase(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on camelCase", () => {
+    const str = "camelCase";
+    const result = isKebabCase(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on snake_case", () => {
+    const str = "snake_case";
+    const result = isKebabCase(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return false on string with spaces", () => {
+    const str = "string space string";
+    const result = isKebabCase(str);
+    expect(result).toBe(false);
+  });
+
+  it("should return true", () => {
+    const str = "kebab-case";
+    const result = isKebabCase(str);
+    expect(result).toBe(true);
   });
 });
