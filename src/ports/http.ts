@@ -1,4 +1,6 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, { AxiosRequestConfig } from "axios";
+import { ApiResponse } from "../models/api";
+import { AxiosError } from "axios";
 
 const instance = axios.create({
   baseURL: process.env.THE_GUARDIAN_SECTION_ENDPOINT,
@@ -8,9 +10,27 @@ const instance = axios.create({
   },
 });
 
-export const makeHttpGetRequest = <DataType>(
+export const makeHttpGetRequest = async <DataType>(
   url: string,
   config?: AxiosRequestConfig,
-): Promise<AxiosResponse<DataType>> => {
-  return instance.get(url, config);
+): Promise<ApiResponse<DataType>> => {
+  try {
+    const axiosResponse = await instance.get(url, config);
+    return {
+      status: axiosResponse.status,
+      data: axiosResponse.data,
+    };
+  } catch (err) {
+    if (err instanceof AxiosError) {
+      return {
+        status: err.response?.status || 500,
+        error: err.message,
+      };
+    }
+
+    return {
+      status: 500,
+      error: "Internal Server Error",
+    };
+  }
 };
