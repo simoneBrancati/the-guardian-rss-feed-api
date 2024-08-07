@@ -1,0 +1,12 @@
+services:
+  the-guardian-api:
+    build:
+      context: .
+      target: build
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    command: npm run dev
+    
