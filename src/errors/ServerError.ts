@@ -1,7 +1,7 @@
 import CustomError from "./CustomError";
 
 export default class ServerError extends CustomError {
-  errorCode = 404;
+  errorCode = 500;
   erroType = "INTERNAL_SERVER_ERROR";
   metadata;
 
