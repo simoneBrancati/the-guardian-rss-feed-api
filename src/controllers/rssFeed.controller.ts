@@ -1,17 +1,23 @@
 import { generateRss } from "../services/rssGeneration.service";
 import { getSectionFromTheGuardian } from "../services/theGuardianApi.service";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 export const getSection = async (
   req: Request,
   res: Response,
-): Promise<Response> => {
+  next: NextFunction,
+): Promise<Response | null> => {
   const { section } = req.params;
-  const rss = await createRssFeed(section);
+  try {
+    const rss = await createRssFeed(section);
+    res.setHeader("Content-Type", "application/xml").send(rss);
 
-  res.setHeader("Content-Type", "application/xml").send(rss);
+    return res;
+  } catch (err) {
+    next(err);
 
-  return res;
+    return null;
+  }
 };
 
 const createRssFeed = async (sectionKey: string): Promise<string> => {
