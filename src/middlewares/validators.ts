@@ -9,7 +9,7 @@ export const theGuardianSectionValidator = (
   const { section } = req.params;
   if (!validateSectionKey(section)) {
     return res
-      .status(404)
+      .status(400)
       .send({ message: `Requested section "${section}" is invalid` });
   }
 
