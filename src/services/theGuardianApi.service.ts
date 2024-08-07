@@ -14,14 +14,14 @@ export const getSectionFromTheGuardian = async (
 
   if (response.status > 399) {
     if (response.status === 404) {
-      throw new NotFoundError("Requested section not found", response.error);
+      throw new NotFoundError("Requested section not found");
     }
 
-    throw new ServerError("Internal Server Error", response.error);
+    throw new ServerError("Internal Server Error");
   }
 
   if (!response.data) {
-    throw new ServerError("Internal Server Error", response.error);
+    throw new ServerError("Internal Server Error");
   }
 
   return response.data.response;

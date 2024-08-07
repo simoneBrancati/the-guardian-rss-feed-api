@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 import { ApiResponse } from "../models/api";
 import { AxiosError } from "axios";
+import logger from "../utils/logger";
 
 const instance = axios.create({
   baseURL: process.env.THE_GUARDIAN_SECTION_ENDPOINT,
@@ -22,6 +23,7 @@ export const makeHttpGetRequest = async <DataType>(
     };
   } catch (err) {
     if (err instanceof AxiosError) {
+      logger.error(`${err.message}, Stack: ${err.stack}`);
       return {
         status: err.response?.status || 500,
         error: {
@@ -32,6 +34,7 @@ export const makeHttpGetRequest = async <DataType>(
     }
 
     if (err instanceof Error) {
+      logger.error(`${err.message}, Stack: ${err.stack}`);
       return {
         status: 500,
         error: {
@@ -40,6 +43,8 @@ export const makeHttpGetRequest = async <DataType>(
         },
       };
     }
+
+    logger.error("HTTP PORT - GET REQUEST: Unknown Error");
 
     return {
       status: 500,

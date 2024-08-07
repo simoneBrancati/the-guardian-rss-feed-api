@@ -1,12 +1,11 @@
 import CustomError from "./CustomError";
-import { IError } from "./ErrorInterface";
 
 export default class ServerError extends CustomError {
   errorCode = 500;
   erroType = "INTERNAL_SERVER_ERROR";
 
-  constructor(message: string, error?: IError) {
-    super(message, error);
+  constructor(message: string) {
+    super(message);
 
     Object.setPrototypeOf(this, ServerError.prototype);
   }

@@ -10,14 +10,10 @@ const rssErrorHandler = (
   next: NextFunction,
 ) => {
   if (err instanceof NotFoundError) {
-    logger.error(err.stack);
-
     return res.status(404).send({ error: err.message });
   }
 
   if (err instanceof ServerError) {
-    logger.error(err.stack);
-
     return res.status(500).send({ error: err.message });
   }
 
