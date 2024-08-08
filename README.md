@@ -1,6 +1,6 @@
 # The Guardian RSS Feed API
 
-This repository provides an Express application that exposes an API for generating RSS feeds based on articles from of The Guardian, a leading UK newspaper.
+This repository provides an Express application that exposes an API for generating RSS feeds based on articles from The Guardian, a leading UK newspaper.
 
 ## Usage
 

@@ -1,8 +1,8 @@
 {
   "name": "the-guardian-rss-feed-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "API for generating RSS feeds based on articles from The Guardian newspaper",
+  "main": "app.ts",
   "scripts": {
     "test": "jest",
     "dev": "ts-node-dev --poll src/app.ts",
