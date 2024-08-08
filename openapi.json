@@ -1,0 +1,53 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "The Guardian RSS Feed Generator API",
+      "version": "1.0.0",
+      "description": "API for generating RSS feeds from The Guardian Newspaper"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "paths": {
+      "/rss/{section}": {
+        "get": {
+          "summary": "Get RSS feed for a specific section of news",
+          "description": "Returns an RSS feed for the selected section.",
+          "parameters": [
+            {
+              "name": "section",
+              "in": "path",
+              "required": true,
+              "description": "The section to retrieve RSS feed for.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with RSS feed",
+              "content": {
+                "application/xml": {
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Invalid section format"
+            },
+            "404": {
+              "description": "Section not found"
+            },
+            "500": {
+              "description": "Internal server error"
+            }
+          }
+        }
+      }
+    }
+  }
