@@ -1,8 +1,9 @@
 import winston from "winston";
+import { debugMode } from "../environment";
 const { combine, timestamp, json } = winston.format;
 
 const logger = winston.createLogger({
-  level: "http",
+  level: debugMode ? "debug" : "http",
   format: combine(
     timestamp({
       format: "YYYY-MM-DD hh:mm:ss.SSS A",
