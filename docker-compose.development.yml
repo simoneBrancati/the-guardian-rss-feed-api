@@ -8,5 +8,17 @@ services:
       - /usr/src/app/node_modules
     ports:
       - 3000:3000
+    depends_on:
+      - redis
     command: npm run dev
+    environment:
+      - APP_PORT=3000
+      - REDIS_PORT=6379
+      - REDIS_HOST=redis
+      - THE_GUARDIAN_SECTION_ENDPOINT=https://content.guardianapis.com
+      - THE_GUARDIAN_API_KEY=${THE_GUARDIAN_API_KEY}
     
+  redis:
+    image: redis:7.4.0-alpine
+    ports:
+      - 6379:6379
