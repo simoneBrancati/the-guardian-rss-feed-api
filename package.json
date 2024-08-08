@@ -38,6 +38,7 @@
     "axios": "^1.7.3",
     "express": "^4.19.2",
     "fast-xml-parser": "^4.4.1",
+    "ioredis": "^5.4.1",
     "morgan": "^1.10.0",
     "winston": "^3.13.1"
   }
