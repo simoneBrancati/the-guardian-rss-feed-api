@@ -13,6 +13,8 @@ services:
       - REDIS_HOST=redis
       - THE_GUARDIAN_SECTION_ENDPOINT=https://content.guardianapis.com
       - THE_GUARDIAN_API_KEY=${THE_GUARDIAN_API_KEY}
+      - CACHE_TTL=600
+      - DEBUG_MODE=${DEBUG_MODE}
 
   redis:
     image: redis:7.4.0-alpine
