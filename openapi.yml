@@ -1,0 +1,32 @@
+openapi: 3.0.3
+info:
+  title: The Guardian RSS Feed Generator API
+  version: 1.0.0
+  description: API for generating RSS feeds from The Guardian Newspaper
+servers:
+  - url: http://localhost:3000
+paths:
+  /rss/{section}:
+    get:
+      summary: Get RSS feed for a specific section of news
+      description: Returns an RSS feed for the selected section
+      parameters:
+        - name: section
+          in: path
+          required: true
+          description: Allows you to choose the type of news to receive in the RSS feed (i.e. technology, football, etc.)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with RSS feed compliant with W3C standards
+          content:
+            application/xml:
+              schema:
+                string
+        '400':
+          description: Invalid section format
+        '404':
+          description: "Requested section is not valid"
+        '500':
+          description: Internal server error
