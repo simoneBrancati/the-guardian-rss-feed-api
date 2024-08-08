@@ -2,12 +2,15 @@ import axios, { AxiosRequestConfig } from "axios";
 import { ApiResponse } from "../models/api";
 import { AxiosError } from "axios";
 import logger from "../utils/logger";
+import { theGuardianApiKey, theGuardianEndpoint } from "../environment";
+
+console.log(theGuardianApiKey, theGuardianEndpoint);
 
 const instance = axios.create({
-  baseURL: process.env.THE_GUARDIAN_SECTION_ENDPOINT,
+  baseURL: theGuardianEndpoint,
   timeout: 10000,
   params: {
-    "api-key": process.env.THE_GUARDIAN_API_KEY,
+    "api-key": theGuardianApiKey,
   },
 });
 
