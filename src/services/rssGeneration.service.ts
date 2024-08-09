@@ -12,7 +12,10 @@ export const generateRss = (
   sectionResults: TheGuardianSectionResult[],
 ): string => {
   const rssJson = generateRssJson(section, sectionResults);
-  return convertJsToXml<CustomRssJson>(rssJson);
+  return (
+    '<?xml version="1.0" encoding="UTF-8"?>' +
+    convertJsToXml<CustomRssJson>(rssJson)
+  );
 };
 
 export const generateRssJson = (
