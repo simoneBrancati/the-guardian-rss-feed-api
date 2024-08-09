@@ -30,7 +30,9 @@ GET http://localhost:3000/rss/:section
 The `:section` parameter allows you to choose the type of news to receive in the RSS feed (i.e. technology, football, etc.).  
 This parameter is **required**.
 
-[Check full api documentation for more](API_DOC.md)
+[Check full api documentation](API_DOC.md)
+
+[Test it with Swagger UI](https://simonebrancati.github.io/the-guardian-rss-feed-api)
 
 ### Running tests
 
