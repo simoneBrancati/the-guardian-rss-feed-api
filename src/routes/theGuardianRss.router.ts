@@ -6,7 +6,7 @@ import cors, { CorsOptions } from "cors";
 const router = express.Router();
 
 const corsOptions: CorsOptions = {
-  origin: "https://simonebrancati.github.io/",
+  origin: "https://simonebrancati.github.io",
   methods: ["GET", "OPTIONS"],
 };
 router.get(
